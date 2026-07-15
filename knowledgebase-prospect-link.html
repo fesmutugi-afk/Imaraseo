@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledgebase Link Prospects — ImaraSEO</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      /* ImaraSEO brand — deep forest green + teal mint accent */
+      --brand-dark:   #1b3a2d;   /* hero/header background */
+      --brand-mid:    #234d3b;   /* slightly lighter green */
+      --brand-accent: #4db896;   /* teal mint — "Actually" colour */
+      --brand-accent2:#3da882;   /* slightly deeper teal for hover */
+      --ink:          #0f1a14;
+      --ink-soft:     #3d5248;
+      --ink-muted:    #6b8070;
+      --bg:           #f4f7f5;   /* very light green-tinted page bg */
+      --surface:      #ffffff;
+      --border:       #d8e4dd;
+      /* DR badge — green */
+      --dr-bg:        #d1fae5;
+      --dr-text:      #065f46;
+      --shadow-sm: 0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+      --r: 10px;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.5;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--brand-dark);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      height: 56px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.3px;
+    }
+    .logo em {
+      color: var(--brand-accent);
+      font-style: normal;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--brand-dark);
+      padding: 44px 32px 40px;
+      border-bottom: 3px solid var(--brand-accent);
+    }
+    .hero-inner { max-width: 1200px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--brand-accent);
+      margin-bottom: 10px;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(22px, 3.5vw, 34px);
+      font-weight: 700;
+      letter-spacing: -.5px;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    h1 em { color: var(--brand-accent); font-style: normal; }
+    .hero-sub {
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      max-width: 560px;
+    }
+    .kpi-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 28px;
+      flex-wrap: wrap;
+    }
+    .kpi {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: var(--r);
+      padding: 14px 20px;
+      min-width: 130px;
+    }
+    .kpi-val {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+    }
+    .kpi-val.accent { color: var(--brand-accent); }
+    .kpi-lbl {
+      font-size: 11px;
+      color: rgba(255,255,255,.45);
+      margin-top: 5px;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ── Main ── */
+    main { max-width: 1200px; margin: 0 auto; padding: 32px; }
+
+    /* ── Tabs ── */
+    .tabs {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 4px;
+      width: fit-content;
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 8px 22px;
+      border: none;
+      background: transparent;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-muted);
+      cursor: pointer;
+      transition: all .15s;
+    }
+    .tab-btn.active { background: var(--brand-dark); color: #fff; }
+    .tab-btn:not(.active):hover { color: var(--ink); background: var(--bg); }
+
+    /* ── Toolbar ── */
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 200px;
+    }
+    .search-icon {
+      position: absolute;
+      left: 11px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--ink-muted);
+      pointer-events: none;
+    }
+    input[type="search"] {
+      width: 100%;
+      padding: 9px 12px 9px 34px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      background: var(--surface);
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s;
+    }
+    input[type="search"]:focus { border-color: var(--brand-accent); }
+    select {
+      padding: 9px 32px 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: inherit;
+      background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236b8070' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 10px center;
+      color: var(--ink);
+      outline: none;
+      appearance: none;
+      cursor: pointer;
+    }
+    select:focus { border-color: var(--brand-accent); }
+    .count-badge {
+      font-size: 12px;
+      color: var(--ink-muted);
+      white-space: nowrap;
+      margin-left: auto;
+    }
+
+    /* ── Scrollable table ── */
+    .table-outer {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: var(--shadow-sm);
+    }
+    table {
+      width: 100%;
+      min-width: 680px;
+      border-collapse: collapse;
+    }
+    th {
+      padding: 11px 16px;
+      text-align: left;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    td {
+      padding: 13px 16px;
+      font-size: 13px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: #f0faf5; }
+
+    /* URL column — wraps */
+    .url-cell { white-space: normal; min-width: 300px; max-width: 420px; }
+    .url-link {
+      color: var(--brand-dark);
+      text-decoration: none;
+      font-weight: 500;
+      display: inline-flex;
+      align-items: flex-start;
+      gap: 5px;
+      line-height: 1.45;
+      word-break: break-all;
+    }
+    .url-link:hover { color: var(--brand-accent2); text-decoration: underline; }
+    .url-link svg { flex-shrink: 0; margin-top: 2px; color: var(--brand-accent); }
+    .domain-sub { font-size: 11px; color: var(--ink-muted); margin-top: 3px; }
+
+    /* DR badge — all green */
+    .dr-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 40px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--dr-bg);
+      color: var(--dr-text);
+    }
+
+    /* Plain traffic number */
+    .traffic-num {
+      font-size: 13px;
+      color: var(--ink-soft);
+      font-weight: 500;
+    }
+    .pg-traffic { font-size: 13px; color: var(--ink-soft); font-weight: 500; }
+
+    /* Sample notice */
+    .sample-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: #edfaf4;
+      border: 1px solid #a7e9cc;
+      border-left: 4px solid var(--brand-accent);
+      border-radius: var(--r);
+      padding: 12px 16px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .sample-notice svg { flex-shrink: 0; margin-top: 1px; color: var(--brand-accent2); }
+    .sample-notice strong { color: var(--brand-dark); }
+
+    /* Empty */
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+      color: var(--ink-muted);
+      font-size: 14px;
+    }
+    .empty svg { margin-bottom: 12px; opacity: .3; }
+
+    @media (max-width: 680px) {
+      header { padding: 0 16px; }
+      .hero  { padding: 28px 16px 28px; }
+      main   { padding: 20px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Imara<em>SEO</em></div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="eyebrow">Link Building</div>
+    <h1>Knowledgebase <em>Prospects</em></h1>
+    <p class="hero-sub">Curated pages and domains available for link inserts and guest posts, with verified traffic and domain ratings. <strong style="color:var(--brand-accent)">These are samples — we have more available and can source prospects tailored to your niche.</strong></p>
+    <div class="kpi-row" id="kpiRow"></div>
+  </div>
+</div>
+
+<main>
+  <div class="tabs">
+    <button class="tab-btn active" onclick="switchTab('li')">Link Inserts <span id="liTabCount"></span></button>
+    <button class="tab-btn"        onclick="switchTab('gp')">Guest Posts  <span id="gpTabCount"></span></button>
+  </div>
+
+  <!-- Link Insert Panel -->
+  <div id="panel-li">
+    <div class="sample-notice">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>These are <strong>sample prospects</strong> to give you a sense of what's available. We have a much larger inventory and can provide more pages tailored to your niche and target keywords.</span>
+    </div>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="liSearch" placeholder="Search URLs…" oninput="renderLI()" />
+      </div>
+      <select id="liDrFilter" onchange="renderLI()">
+        <option value="">All DR</option>
+        <option value="high">DR 70+ (High)</option>
+        <option value="mid">DR 50–69 (Medium)</option>
+        <option value="low">DR &lt;50 (Low)</option>
+      </select>
+      <span class="count-badge" id="liCountLabel"></span>
+    </div>
+    <div class="table-outer">
+      <table>
+        <thead>
+          <tr>
+            <th style="min-width:300px">Target URL</th>
+            <th>DR</th>
+            <th>Domain Organic Traffic</th>
+            <th>Page Organic Traffic</th>
+          </tr>
+        </thead>
+        <tbody id="liBody"></tbody>
+      </table>
+      <div class="empty" id="liEmpty" style="display:none">
+        <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <p>No results match your filters.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Guest Post Panel -->
+  <div id="panel-gp" style="display:none">
+    <div class="sample-notice">
+      <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+      <span>These are <strong>sample prospects</strong> to give you a sense of what's available. We have a much larger inventory and can provide more domains tailored to your niche and target audience.</span>
+    </div>
+    <div class="toolbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="search" id="gpSearch" placeholder="Search domains…" oninput="renderGP()" />
+      </div>
+      <span class="count-badge" id="gpCountLabel"></span>
+    </div>
+    <div class="table-outer">
+      <table>
+        <thead>
+          <tr>
+            <th style="min-width:240px">Domain</th>
+            <th>DR</th>
+            <th>Organic Traffic</th>
+          </tr>
+        </thead>
+        <tbody id="gpBody"></tbody>
+      </table>
+      <div class="empty" id="gpEmpty" style="display:none">
+        <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <p>No results match your filters.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+const LI_DATA = [
+  { url: "https://blog.invgate.com/the-5-levels-of-it-support", dr: 73, domTraffic: 55600, pageTraffic: 728 },
+  { url: "https://www.medesk.net/en/blog/practice-management-software-for-therapists/", dr: 72, domTraffic: 16805, pageTraffic: 20 },
+  { url: "https://www.custify.com/blog/saas-customer-onboarding-guide/", dr: 74, domTraffic: 13686, pageTraffic: 321 },
+  { url: "https://www.artsyltech.com/healthcare-claims-processing-workflow", dr: 71, domTraffic: 4975, pageTraffic: 95 },
+  { url: "https://www.devopsschool.com/blog/top-10-faq-software-tools-in-2025-features-pros-cons-comparison/", dr: 62, domTraffic: 22870, pageTraffic: 8 },
+  { url: "https://www.projectmanagertemplate.com/post/what-information-should-be-documented-in-an-incident-log-best-practice-guide", dr: 35, domTraffic: 21862, pageTraffic: 118 },
+  { url: "https://www.featurebase.app/blog/ai-knowledge-base", dr: 84, domTraffic: 10350, pageTraffic: 39 },
+  { url: "https://www.chanty.com/blog/digital-communication-tools/", dr: 77, domTraffic: 29628, pageTraffic: 6 },
+  { url: "https://www.qandle.com/blog/10-best-knowledge-management-tools/", dr: 56, domTraffic: 108422, pageTraffic: 4 },
+  { url: "https://onlinepmcourses.com/project-document-management-organize-and-manage-project-information/", dr: 42, domTraffic: 3936, pageTraffic: 2 },
+];
+
+const GP_DATA = [
+  { domain: "guardiandigital.com",        dr: 58, traffic: 21423 },
+  { domain: "makingbusinessmatter.co.uk", dr: 45, traffic: 7494  },
+  { domain: "opsmatters.com",             dr: 51, traffic: 2979  },
+  { domain: "aipeakflow.com",             dr: 39, traffic: 2061  },
+];
+
+function fmt(n) {
+  if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+  if (n >= 1000)    return (n / 1000).toFixed(0) + 'K';
+  return String(n);
+}
+
+function host(url) {
+  try { return new URL(url.startsWith('http') ? url : 'https://' + url).hostname.replace('www.', ''); }
+  catch { return url; }
+}
+
+function extIcon() {
+  return `<svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0;margin-top:2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>`;
+}
+
+function buildKPIs() {
+  const all   = [...LI_DATA, ...GP_DATA];
+  const avgDR = Math.round(all.reduce((s, d) => s + d.dr, 0) / all.length);
+  const topDR = Math.max(...LI_DATA.map(d => d.dr));
+  const avgDomTraffic = Math.round(LI_DATA.reduce((s, d) => s + d.domTraffic, 0) / LI_DATA.length);
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi"><div class="kpi-val accent">${all.length}</div><div class="kpi-lbl">Total Prospects</div></div>
+    <div class="kpi"><div class="kpi-val">${LI_DATA.length}</div><div class="kpi-lbl">Link Insert Pages</div></div>
+    <div class="kpi"><div class="kpi-val">${GP_DATA.length}</div><div class="kpi-lbl">Guest Post Domains</div></div>
+    <div class="kpi"><div class="kpi-val">${avgDR}</div><div class="kpi-lbl">Average DR</div></div>
+    <div class="kpi"><div class="kpi-val">${topDR}</div><div class="kpi-lbl">Highest DR</div></div>
+    <div class="kpi"><div class="kpi-val">${fmt(avgDomTraffic)}</div><div class="kpi-lbl">Avg Domain Traffic</div></div>
+  `;
+  document.getElementById('liTabCount').textContent = `(${LI_DATA.length})`;
+  document.getElementById('gpTabCount').textContent = `(${GP_DATA.length})`;
+}
+
+function renderLI() {
+  const q   = document.getElementById('liSearch').value.toLowerCase();
+  const drF = document.getElementById('liDrFilter').value;
+  const rows = LI_DATA.filter(d => {
+    if (q && !d.url.toLowerCase().includes(q)) return false;
+    if (drF === 'high' && d.dr < 70)                 return false;
+    if (drF === 'mid'  && (d.dr < 50 || d.dr >= 70)) return false;
+    if (drF === 'low'  && d.dr >= 50)                 return false;
+    return true;
+  });
+  document.getElementById('liCountLabel').textContent = `${rows.length} of ${LI_DATA.length} prospects`;
+  document.getElementById('liEmpty').style.display = rows.length ? 'none' : 'block';
+  document.getElementById('liBody').innerHTML = rows.map(d => `<tr>
+    <td class="url-cell">
+      <a class="url-link" href="${d.url}" target="_blank" rel="noopener">${extIcon()}${d.url.replace(/^https?:\/\/(www\.)?/, '')}</a>
+      <div class="domain-sub">${host(d.url)}</div>
+    </td>
+    <td><span class="dr-badge">${d.dr}</span></td>
+    <td><span class="traffic-num">${d.domTraffic.toLocaleString()}</span></td>
+    <td><span class="pg-traffic">${d.pageTraffic}</span></td>
+  </tr>`).join('');
+}
+
+function renderGP() {
+  const q = document.getElementById('gpSearch').value.toLowerCase();
+  const rows = GP_DATA.filter(d => !q || d.domain.toLowerCase().includes(q));
+  document.getElementById('gpCountLabel').textContent = `${rows.length} of ${GP_DATA.length} prospects`;
+  document.getElementById('gpEmpty').style.display = rows.length ? 'none' : 'block';
+  document.getElementById('gpBody').innerHTML = rows.map(d => `<tr>
+    <td class="url-cell">
+      <a class="url-link" href="https://${d.domain}" target="_blank" rel="noopener">${extIcon()}${d.domain}</a>
+    </td>
+    <td><span class="dr-badge">${d.dr}</span></td>
+    <td><span class="traffic-num">${d.traffic.toLocaleString()}</span></td>
+  </tr>`).join('');
+}
+
+function switchTab(tab) {
+  document.getElementById('panel-li').style.display = tab === 'li' ? '' : 'none';
+  document.getElementById('panel-gp').style.display = tab === 'gp' ? '' : 'none';
+  document.querySelectorAll('.tab-btn').forEach((b, i) => {
+    b.classList.toggle('active', (i === 0 && tab === 'li') || (i === 1 && tab === 'gp'));
+  });
+}
+
+buildKPIs();
+renderLI();
+renderGP();
+</script>
+</body>
+</html>
